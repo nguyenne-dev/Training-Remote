@@ -48,6 +48,7 @@ try {
     }
 
     default:
+      console.log("Invalid command");
       console.log("Commands:");
       console.log('node src/cli.js add "Todo title"');
       console.log("node src/cli.js list");
