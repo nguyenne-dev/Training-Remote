@@ -4,7 +4,7 @@
 
 ### Định nghĩa
 
-Test-Driven Development (TDD) là phương pháp phát triển phần mềm trong đó test được viết trước khi thực hiện code feature
+Test-Driven Development (TDD) là phương pháp phát triển phần mềm trong đó test được viết trước khi implementation feature
 
 ### Mục tiêu của TDD:
 
@@ -67,6 +67,12 @@ Tối ưu code nhưng không thay đổi các hành vi ban đầu
 
 ## 3. Testing Levels
 
+| Testing Type     | Scope                             | Speed  | External Dependency    | Main Purpose                  |
+| ---------------- | --------------------------------- | ------ | ---------------------- | ----------------------------- |
+| Unit Test        | Single function/module            | Fast   | Mocked                 | Verify business logic         |
+| Integration Test | Multiple modules working together | Medium | Real database/file/API | Verify module interaction     |
+| End-to-End Test  | Whole application flow            | Slow   | Real environment       | Verify complete user workflow |
+
 ### Unit Test
 
 Kiểm thử các đơn vị mã nhỏ nhất, thường là các hàm hoặc phương thức riêng lẻ.
@@ -78,7 +84,7 @@ Kiểm thử các đơn vị mã nhỏ nhất, thường là các hàm hoặc ph
   - Nhanh
   - Dễ debug
   - Phạm vi nhỏ
-  - Là trọng tâm chính của TDDX
+  - Là trọng tâm chính của TDD
 
 ### Integration Test
 
@@ -153,7 +159,37 @@ node app.js complete 1
 - **Đảm bảo ổn định khi thay đổi**
   → regression testing khi AI refactor hoặc generate phiên bản mới.
 
-### 6. Các lỗi phổ biến trong kiểm thử và cách tránh
+### Ví dụ thực tế từ Todo CLI
+
+Trong quá trình xây dựng Todo CLI, AI đề xuất xử lý input như sau:
+
+```js
+title?.toString().trim();
+```
+
+Tuy nhiên khi review bằng unit test, tôi phát hiện:
+
+- validation order chưa đúng
+- `undefined` trả về sai error message
+- object/array vẫn bị `.toString()` trước khi validate type
+
+Sau khi review lại bằng unit test, tôi refine validation flow để xử lý:
+- empty input
+- invalid types
+- whitespace-only input
+
+```js
+if (!title?.toString().trim()) {
+  throw new Error("Title is required");
+}
+if (typeof title !== "string" && typeof title !== "number") {
+  throw new Error("Title must be a string or number");
+}
+```
+
+Điều này cho thấy test không chỉ kiểm tra code có chạy hay không, mà còn giúp phát hiện logic issue và kiểm soát AI-generated implementation.
+
+## 6. Các lỗi phổ biến trong kiểm thử và cách tránh
 
 Dù áp dụng TDD hay bất kỳ phương pháp kiểm thử nào, có những sai lầm dễ mắc phải:
 
@@ -207,8 +243,6 @@ Assertion này kiểm tra trực tiếp trạng thái mong muốn của ticket, 
 
 **Kiểm thử chi tiết triển khai (Testing Implementation Details):** Viết test dựa trên cách một hàm được viết bên trong, thay vì kiểm tra kết quả mà nó mang lại. Điều này làm cho test dễ bị hỏng khi code được tái cấu trúc.
 
-
-
 **Cách tránh:** Tập trung vào "cái gì" (what - hành vi) chứ không phải "như thế nào" (how - cách triển khai).
 
 **Tin tưởng mù quáng vào AI (Blindly Trusting AI Output):** Chấp nhận code hoặc test do AI tạo ra mà không xem xét kỹ lưỡng hoặc chạy chúng.
@@ -216,3 +250,38 @@ Assertion này kiểm tra trực tiếp trạng thái mong muốn của ticket, 
 **Cách tránh:** Luôn xem xét, xác thực và chạy thử nghiệm với code và test do AI tạo ra, coi chúng như một gợi ý chứ không phải là sự thật tuyệt đối.
 
 ## 7. Workflow Evidence
+
+Trong quá trình xây dựng Todo CLI bằng TDD, tôi đã áp dụng cả 3 workflow với AI:
+
+### 1. Layered Questioning
+
+- Research về TDD, unit test, mock, behavior testing
+- Hỏi về cách chia layer Service / Repository / CLI
+- Làm rõ khác nhau giữa testing behavior và implementation details
+
+### 2. Solution Exploration
+
+Tôi đã explore nhiều lựa chọn:
+
+- Mock repository hay lưu file thật
+- Test interaction hay test output
+- Validation ở service hay CLI
+- Test nhỏ từng behavior hay test nhiều behavior cùng lúc
+
+Sau khi compare ưu/nhược điểm, tôi chọn:
+
+- Mock dependency trong unit test
+- Focus behavior testing
+- Tách service/repository responsibilities
+
+### 3. Iterative Refinement
+
+Tôi liên tục refine implementation dựa trên feedback:
+
+- Sửa validation order
+- Thống nhất createdAt naming
+- Thêm trim behavior test
+- Loại bỏ unnecessary mock setup
+- Refactor test naming và responsibilities
+
+Toàn bộ quá trình có thể xác nhận [tại đây](https://chatgpt.com/share/6a05f88a-e5f0-83ec-8f82-3c53c2d15008)
