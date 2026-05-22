@@ -13,6 +13,7 @@ const {
   listTickets,
   completeTicket,
   deleteTicket,
+  getTicket,
 } = require("../../src/services/ticket.service");
 
 describe("Ticket Service Unit Test", () => {
@@ -83,6 +84,46 @@ describe("Ticket Service Unit Test", () => {
       const tickets = listTickets();
 
       expect(tickets).toEqual(mockTickets);
+    });
+  });
+
+  describe("getTicket", () => {
+    test("Lấy thành công ticket", () => {
+      const mockTicket = {
+        id: 1,
+        title: "Ticket 1",
+        completed: false,
+        createdAt: new Date().toISOString(),
+      };
+      repository.findById.mockReturnValue(mockTicket);
+      const ticket = getTicket(1);
+
+      expect(ticket).toEqual(mockTicket);
+    });
+
+    test("ID là số dạng string", () => {
+      const mockTicket = {
+        id: 1,
+        title: "Ticket 1",
+        completed: false,
+        createdAt: new Date().toISOString(),
+      };
+      repository.findById.mockReturnValue(mockTicket);
+      const ticket = getTicket("1");
+
+      expect(ticket).toEqual(mockTicket);
+    });
+    test("ID rỗng", () => {
+      expect(() => getTicket("")).toThrow("TicketId is required");
+    });
+
+    test("Không tìm thấy ticket", () => {
+      repository.findById.mockReturnValue(null);
+      expect(() => getTicket(999)).toThrow("Ticket not found");
+    });
+
+    test("ID không phải số", () => {
+      expect(() => getTicket("abc")).toThrow("TicketId must be a number");
     });
   });
 

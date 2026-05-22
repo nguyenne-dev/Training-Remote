@@ -19,6 +19,21 @@ function listTickets() {
   return repository.findAll();
 }
 
+function getTicket(ticketId) {
+  if (!ticketId?.toString().trim()) {
+    throw new Error("TicketId is required");
+  }
+  const id = Number(ticketId);
+  if (isNaN(id)) {
+    throw new Error("TicketId must be a number");
+  }
+  const ticket = repository.findById(id);
+  if (!ticket) {
+    throw new Error("Ticket not found");
+  }
+  return ticket;
+}
+
 function completeTicket(id) {
   const ticket = repository.findById(id);
   if (!ticket) {
@@ -38,6 +53,7 @@ function deleteTicket(id) {
 module.exports = {
   addTicket,
   listTickets,
+  getTicket,
   completeTicket,
   deleteTicket,
 };
