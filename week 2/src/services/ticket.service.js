@@ -1,15 +1,4 @@
-const tickets = [
-  {
-    id: 1,
-    title: "Ticket 1",
-    completed: false,
-  },
-  {
-    id: 2,
-    title: "Ticket 2",
-    completed: false,
-  },
-];
+const repository = require("../repositories/ticket.repository");
 
 function addTicket(title) {
   if (!title?.toString().trim()) {
@@ -23,47 +12,27 @@ function addTicket(title) {
     title: title.toString().trim(),
     completed: false,
   };
-  tickets.push(ticket);
-  return ticket;
+  return repository.save(ticket);
 }
 
 function listTickets() {
-  return tickets;
+  return repository.findAll();
 }
 
 function completeTicket(id) {
-  const ticket = tickets.find((t) => t.id === id);
+  const ticket = repository.findById(id);
   if (!ticket) {
     throw new Error("Ticket not found");
   }
-  ticket.completed = true;
-  return ticket;
+  return repository.update(id, { completed: true });
 }
 
 function deleteTicket(id) {
-  const index = tickets.findIndex((t) => t.id === id);
-  if (index === -1) {
+  const result = repository.remove(id);
+  if (!result) {
     throw new Error("Ticket not found");
   }
-  tickets.splice(index, 1);
   return true;
-}
-
-function clearTickets() {
-  tickets.length = 0;
-
-  tickets.push(
-    {
-      id: 1,
-      title: "Ticket 1",
-      completed: false,
-    },
-    {
-      id: 2,
-      title: "Ticket 2",
-      completed: false,
-    },
-  );
 }
 
 module.exports = {
@@ -71,5 +40,4 @@ module.exports = {
   listTickets,
   completeTicket,
   deleteTicket,
-  clearTickets,
 };
