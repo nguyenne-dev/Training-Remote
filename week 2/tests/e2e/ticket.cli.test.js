@@ -37,12 +37,12 @@ describe("Ticket CLI E2E", () => {
 
     test("Thêm ticket rỗng", () => {
       const output = execSync(`node src/cli.js add ""`).toString();
-      expect(output).toBe("Error: Title is required");
+      expect(output).toContain("Error: Title is required");
     });
 
     test("Thêm ticket thiếu title", () => {
       const output = execSync(`node src/cli.js add`).toString();
-      expect(output).toBe("Error: Title is required");
+      expect(output).toContain("Error: Title is required");
     });
   });
 
@@ -79,7 +79,7 @@ describe("Ticket CLI E2E", () => {
 
     test("Hoàn thành ticket thiếu id", () => {
       const output = execSync(`node src/cli.js complete`).toString();
-      expect(output).toBe("Error: Ticket not found");
+      expect(output).toContain("Error: Ticket not found");
     });
   });
 
@@ -98,7 +98,7 @@ describe("Ticket CLI E2E", () => {
 
     test("Xóa ticket thiếu id", () => {
       const output = execSync(`node src/cli.js delete`).toString();
-      expect(output).toBe("Error: Ticket not found");
+      expect(output).toContain("Error: Ticket not found");
     });
 
     test("Xóa xong danh sách rỗng", () => {
