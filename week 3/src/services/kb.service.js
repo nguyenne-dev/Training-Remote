@@ -1,3 +1,4 @@
+require("dotenv").config();
 const client = process.env.KB_CLIENT === "http" ? require("../clients/http-kb.client") : require("../clients/mock-kb.client");
 
 async function search(keyword, topK = 5) {

@@ -6,53 +6,69 @@ app.use(express.json());
 
 const DB_FILE = "./data.json";
 
+// helper đọc file
 const readDB = () => {
   const data = fs.readFileSync(DB_FILE, "utf-8");
   return JSON.parse(data);
 };
 
+// helper ghi file
 const writeDB = (data) => {
   fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
 };
 
+// seed gốc để reset
 const seed = [
-  [
-    {
-      id: "doc-001",
-      title: "Customer Response Template",
-      content: "Thank you for contacting us...",
-      nodePath: "/templates/email",
-      tags: ["template", "email"],
-    },
-    {
-      id: "doc-002",
-      title: "DevOps Team Members",
-      content: "John, David, Sarah",
-      nodePath: "/team/devops",
-      tags: ["team", "devops"],
-    },
-    {
-      id: "doc-003",
-      title: "API Integration Guide",
-      content: "Step 1: Read API docs...",
-      nodePath: "/docs/guides",
-      tags: ["guide", "api"],
-    },
-    {
-      id: "doc-004",
-      title: "Project Roadmap",
-      content: "Q1 2023: Launch new features...",
-      nodePath: "/projects/roadmap",
-      tags: ["project", "roadmap"],
-    },
-    {
-      id: "doc-005",
-      title: "Password Reset Template",
-      content: "Click the link to reset your password...",
-      nodePath: "/templates/email",
-      tags: ["template", "email"],
-    },
-  ],
+  {
+    "id": "doc-001",
+    "title": "Customer Response Template",
+    "content": "Thank you for contacting us...",
+    "nodePath": "/templates/email",
+    "tags": [
+      "template",
+      "email"
+    ]
+  },
+  {
+    "id": "doc-002",
+    "title": "DevOps Team Members",
+    "content": "John, David, Sarah",
+    "nodePath": "/team/devops",
+    "tags": [
+      "team",
+      "devops"
+    ]
+  },
+  {
+    "id": "doc-003",
+    "title": "API Integration Guide",
+    "content": "Step 1: Read API docs...",
+    "nodePath": "/docs/guides",
+    "tags": [
+      "guide",
+      "api"
+    ]
+  },
+  {
+    "id": "doc-004",
+    "title": "Project Roadmap",
+    "content": "Q1 2023: Launch new features...",
+    "nodePath": "/projects/roadmap",
+    "tags": [
+      "project",
+      "roadmap"
+    ]
+  },
+  {
+    "id": "doc-005",
+    "title": "Password Reset Template",
+    "content": "Click the link to reset your password...",
+    "nodePath": "/templates/email",
+    "tags": [
+      "template",
+      "email"
+    ]
+  }
 ];
 
 app.get("/documents/search", (req, res) => {
@@ -67,7 +83,7 @@ app.get("/documents/search", (req, res) => {
       .filter(
         (d) =>
           d.title.toLowerCase().includes(keyword) ||
-          d.content.toLowerCase().includes(keyword),
+          d.content.toLowerCase().includes(keyword)
       )
       .slice(0, Number(topK));
 

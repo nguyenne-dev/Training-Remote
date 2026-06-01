@@ -2,6 +2,7 @@
   {
     "id": 1,
     "title": "Default Ticket",
-    "completed": false
+    "completed": true,
+    "updatedAt": "2026-06-01T12:46:44.818Z"
   }
 ]
