@@ -1,0 +1,54 @@
+[
+  [
+    {
+      "id": "doc-001",
+      "title": "Customer Response Template",
+      "content": "Thank you for contacting us...",
+      "nodePath": "/templates/email",
+      "tags": [
+        "template",
+        "email"
+      ]
+    },
+    {
+      "id": "doc-002",
+      "title": "DevOps Team Members",
+      "content": "John, David, Sarah",
+      "nodePath": "/team/devops",
+      "tags": [
+        "team",
+        "devops"
+      ]
+    },
+    {
+      "id": "doc-003",
+      "title": "API Integration Guide",
+      "content": "Step 1: Read API docs...",
+      "nodePath": "/docs/guides",
+      "tags": [
+        "guide",
+        "api"
+      ]
+    },
+    {
+      "id": "doc-004",
+      "title": "Project Roadmap",
+      "content": "Q1 2023: Launch new features...",
+      "nodePath": "/projects/roadmap",
+      "tags": [
+        "project",
+        "roadmap"
+      ]
+    },
+    {
+      "id": "doc-005",
+      "title": "Password Reset Template",
+      "content": "Click the link to reset your password...",
+      "nodePath": "/templates/email",
+      "tags": [
+        "template",
+        "email"
+      ]
+    }
+  ]
+]
