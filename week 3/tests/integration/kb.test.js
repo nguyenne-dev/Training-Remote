@@ -1,4 +1,4 @@
-// process.env.KB_CLIENT = "mock";
+process.env.KB_CLIENT = "mock";
 
 const kbService = require("../../src/services/kb.service");
 

@@ -1,7 +1,6 @@
 const URL = process.env.KB_URL || "http://localhost:3000";
 
 async function search(query, topK = 5) {
-  console.log("Searching for:", query, "TopK:", topK);
   if (!query?.trim()) {
     throw new Error("Query is required");
   }
@@ -10,15 +9,25 @@ async function search(query, topK = 5) {
     throw new Error("TopK must be greater than 0");
   }
 
-  const res = await fetch(
-    `${URL}/documents/search?q=${query}&topK=${topK}`,
-  );
+  const res = await fetch(`${URL}/search`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      topK,
+    }),
+  });
 
   if (!res.ok) {
-    throw new Error("Failed to search documents");
+    const error = await res.json();
+    throw new Error(error.error || "Failed to search documents");
   }
 
-  return await res.json();
+  const data = await res.json();
+
+  return data.results;
 }
 
 async function list(nodePath, limit = 10) {
@@ -26,15 +35,25 @@ async function list(nodePath, limit = 10) {
     throw new Error("Node path is required");
   }
 
-  const res = await fetch(
-    `${URL}/documents?nodePath=${nodePath}&limit=${limit}`,
-  );
+  const res = await fetch(`${URL}/list`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      nodePath,
+      limit,
+    }),
+  });
 
   if (!res.ok) {
-    throw new Error("Failed to list documents");
+    const error = await res.json();
+    throw new Error(error.error || "Failed to list documents");
   }
 
-  return res.json();
+  const data = await res.json();
+
+  return data.results;
 }
 
 async function retrieve(docId) {
@@ -42,10 +61,19 @@ async function retrieve(docId) {
     throw new Error("Document id is required");
   }
 
-  const res = await fetch(`${URL}/documents/${docId}`);
+  const res = await fetch(`${URL}/retrieve`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      docId,
+    }),
+  });
 
   if (!res.ok) {
-    throw new Error("Document not found");
+    const error = await res.json();
+    throw new Error(error.error || "Document not found");
   }
 
   return res.json();
@@ -66,7 +94,7 @@ async function add(documentData) {
     throw new Error("Node path is required");
   }
 
-  const res = await fetch(`${URL}/documents`, {
+  const res = await fetch(`${URL}/add`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -80,7 +108,8 @@ async function add(documentData) {
   });
 
   if (!res.ok) {
-    throw new Error("Failed to add document");
+    const error = await res.json();
+    throw new Error(error.error || "Failed to add document");
   }
 
   return res.json();
