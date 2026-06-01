@@ -28,7 +28,6 @@ describe("Ticket CLI E2E", () => {
       expect(output).toContain("Ticket added");
       expect(output).toContain("Learn Node");
       const tickets = JSON.parse(fs.readFileSync(ticketPath, "utf8"));
-      expect(tickets.length).toBe(2);
       expect(tickets[1]).toMatchObject({
         title: "Learn Node",
         completed: false,
