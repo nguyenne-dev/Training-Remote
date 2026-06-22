@@ -1,0 +1,130 @@
+[
+  {
+    "trang_thai": "active",
+    "username": "user1",
+    "email": "user1@mindx.com",
+    "email_dang_ky": "dk_user1@gmail.com",
+    "trang_thai_lam_viec": "đang làm",
+    "trang_thai_tai_khoan": "mở"
+  },
+  {
+    "trang_thai": "active",
+    "username": "user2",
+    "email": "user2@mindx.com",
+    "email_dang_ky": "dk_user2@gmail.com",
+    "trang_thai_lam_viec": "đang làm",
+    "trang_thai_tai_khoan": "mở"
+  },
+  {
+    "trang_thai": "inactive",
+    "username": "user3",
+    "email": "user3@mindx.com",
+    "email_dang_ky": "dk_user3@gmail.com",
+    "trang_thai_lam_viec": "nghỉ",
+    "trang_thai_tai_khoan": "khóa"
+  },
+  {
+    "trang_thai": "active",
+    "username": "user4",
+    "email": "user4@mindx.com",
+    "email_dang_ky": "dk_user4@gmail.com",
+    "trang_thai_lam_viec": "đang làm",
+    "trang_thai_tai_khoan": "mở"
+  },
+  {
+    "trang_thai": "active",
+    "username": "user5",
+    "email": "user5@mindx.com",
+    "email_dang_ky": "dk_user5@gmail.com",
+    "trang_thai_lam_viec": "đang làm",
+    "trang_thai_tai_khoan": "mở"
+  },
+  {
+    "trang_thai": "inactive",
+    "username": "user6",
+    "email": "user6@mindx.com",
+    "email_dang_ky": "dk_user6@gmail.com",
+    "trang_thai_lam_viec": "nghỉ",
+    "trang_thai_tai_khoan": "khóa"
+  },
+  {
+    "trang_thai": "active",
+    "username": "user7",
+    "email": "user7@mindx.com",
+    "email_dang_ky": "dk_user7@gmail.com",
+    "trang_thai_lam_viec": "đang làm",
+    "trang_thai_tai_khoan": "mở"
+  },
+  {
+    "trang_thai": "active",
+    "username": "user8",
+    "email": "user8@mindx.com",
+    "email_dang_ky": "dk_user8@gmail.com",
+    "trang_thai_lam_viec": "đang làm",
+    "trang_thai_tai_khoan": "mở"
+  },
+  {
+    "trang_thai": "inactive",
+    "username": "user9",
+    "email": "user9@mindx.com",
+    "email_dang_ky": "dk_user9@gmail.com",
+    "trang_thai_lam_viec": "nghỉ",
+    "trang_thai_tai_khoan": "khóa"
+  },
+  {
+    "trang_thai": "active",
+    "username": "user10",
+    "email": "user10@mindx.com",
+    "email_dang_ky": "dk_user10@gmail.com",
+    "trang_thai_lam_viec": "đang làm",
+    "trang_thai_tai_khoan": "mở"
+  },
+  {
+    "trang_thai": "active",
+    "username": "user11",
+    "email": "user11@mindx.com",
+    "email_dang_ky": "dk_user11@gmail.com",
+    "trang_thai_lam_viec": "đang làm",
+    "trang_thai_tai_khoan": "mở"
+  },
+  {
+    "trang_thai": "inactive",
+    "username": "user12",
+    "email": "user12@mindx.com",
+    "email_dang_ky": "dk_user12@gmail.com",
+    "trang_thai_lam_viec": "nghỉ",
+    "trang_thai_tai_khoan": "khóa"
+  },
+  {
+    "trang_thai": "active",
+    "username": "user13",
+    "email": "user13@mindx.com",
+    "email_dang_ky": "dk_user13@gmail.com",
+    "trang_thai_lam_viec": "đang làm",
+    "trang_thai_tai_khoan": "mở"
+  },
+  {
+    "trang_thai": "active",
+    "username": "user14",
+    "email": "user14@mindx.com",
+    "email_dang_ky": "dk_user14@gmail.com",
+    "trang_thai_lam_viec": "đang làm",
+    "trang_thai_tai_khoan": "mở"
+  },
+  {
+    "trang_thai": "inactive",
+    "username": "user15",
+    "email": "user15@mindx.com",
+    "email_dang_ky": "dk_user15@gmail.com",
+    "trang_thai_lam_viec": "nghỉ",
+    "trang_thai_tai_khoan": "khóa"
+  },
+  {
+    "trang_thai": "inactive",
+    "username": "user15",
+    "email": "haitsfq@gmail.com",
+    "email_dang_ky": "dk_user15@gmail.com",
+    "trang_thai_lam_viec": "nghỉ",
+    "trang_thai_tai_khoan": "khóa"
+  }
+]
