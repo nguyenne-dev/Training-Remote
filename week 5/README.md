@@ -1,5 +1,9 @@
 # Week 5 - Helpdesk Ticket Automation
 
+# Report 
+[REPORT.md](./Report/REPORT.md)
+---
+
 ## Giới thiệu
 
 Dự án mô phỏng hệ thống tự động xử lý ticket Helpdesk từ Odoo.
